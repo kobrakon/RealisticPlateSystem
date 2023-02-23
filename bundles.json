@@ -1,0 +1,28 @@
+{
+  "manifest": [
+    {
+    "key": "assets/item_equipment_armorplate_chest.bundle",
+			"dependencyKeys": [
+        "cubemaps",
+        "shaders",
+				"assets/commonassets/physics/physicsmaterials.bundle"
+			]
+    },
+    {
+      "key": "assets/item_equipment_armorplate_arm.bundle",
+			"dependencyKeys": [
+        "cubemaps",
+        "shaders",
+				"assets/commonassets/physics/physicsmaterials.bundle"
+			]
+    },
+    {
+      "key": "assets/item_equipment_armorplate_stomach.bundle",
+      "dependencyKeys": [
+        "cubemaps",
+        "shaders",
+        "assets/commonassets/physics/physicsmaterials.bundle"
+      ]
+    }
+  ]
+}

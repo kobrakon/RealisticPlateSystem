@@ -1,0 +1,18 @@
+{
+    "GenerationConfig":
+    {
+        "MaxClass": 7, // max level of plates to be produced, 7 means you'll get plates from class 1 to 7
+        "IgnoreIntegratedArmors": true, // should armors with woven in armor (i.e. PACA) be ignored during tweaking
+        "VestWeightRetainPercent": 0.25 // percent of weight to remain after tweaking, 0.25 means 25% of a vest's weight is retained
+    },
+    "BotGenConfig":
+    {
+        "MaxScavPlateLevel": 4, // higest armor class scavs can spawn with
+        "BaseChestPlateChance": 80, // chance for bot to have chest plate
+        "BaseStomachPlateChance": 60, // chance for bot to have stomach plate
+        "BaseArmPlateChance": 60, // chance for bot to have arm plates
+        "BossChestPlateChance": 100, // chance for boss to have chest plate
+        "BossStomachPlateChance": 100, // chance for boss to have stomach plate
+        "BossArmPlateChance": 100 // chance for boss to have arm plates
+    }
+}
