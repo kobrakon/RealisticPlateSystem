@@ -1,0 +1,18 @@
+{
+    "GenerationConfig":
+    {
+        "MaxClass": 7,
+        "IgnoreIntegratedArmors": true,
+        "VestWeightRetainPercent": 25
+    },
+    "BotGenConfig":
+    {
+        "MaxScavPlateLevel": 4,
+        "BaseChestPlateChance": 80,
+        "BaseStomachPlateChance": 60,
+        "BaseArmPlateChance": 60,
+        "BossChestPlateChance": 100,
+        "BossStomachPlateChance": 100,
+        "BossArmPlateChance": 100
+    }
+}

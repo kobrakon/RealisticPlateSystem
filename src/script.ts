@@ -4,6 +4,7 @@ import { DatabaseServer } from "@spt-aki/servers/DatabaseServer";
 import { ILogger } from "@spt-aki/models/spt/utils/ILogger";
 import { JsonUtil } from "@spt-aki/utils/JsonUtil";
 import { IDatabaseTables } from "@spt-aki/models/spt/server/IDatabaseTables";
+import { ILocaleBase } from "@spt-aki/models/spt/server/ILocaleBase";
 import { ITemplateItem } from "@spt-aki/models/eft/common/tables/ITemplateItem";
 
 let Logger: ILogger;
@@ -17,9 +18,10 @@ let armPlates = [] as string[];
 let scavPlates = [] as string[];
 let scavStomachPlates = [] as string[];
 let scavArmPlates = [] as string[]; // shouldn't spawn with them but jic
-let locales;
+let locales: ILocaleBase;
 
-const config = require("../config.jsonc");
+const config = require("../config.json") as IConfig;
+const weightRetainPer = config.GenerationConfig.VestWeightRetainPercent / 100;
 
 class plates implements IPostDBLoadMod
 {
@@ -100,7 +102,7 @@ class plates implements IPostDBLoadMod
                 let materialPenaltyMult = material == "UHMWPE" || material == "Aramid" ? 1 : material == "Ceramic" || material == "Aluminum" || material == "Titan" || material == "Combined" ? 2 : 3;
                 let bluntMat = material == "Aramid" ? 0.4 : 0.2; // soft armor does body ouchies
                 let materialNoise = material == "Aramid" ? "gear_armor" : material == "UHMWPE" || material == "Combined" ? "gear_helmet" : "container_metal";
-                if (armPlates.length != 7)
+                if (armPlates.length != config.GenerationConfig.MaxClass)
                 {
                     let armPlate = jsonUtil.clone(items["5648a7494bdc2d9d488b4583"]);
                     armPlate._id = `plate${i}Arms`;
@@ -292,7 +294,7 @@ class plates implements IPostDBLoadMod
                 let hasArms = item._props.armorZone.includes("LeftArm");
                 let isSmallBoi = !item._props.armorZone.includes("Stomach");
                 item._props.armorZone = [];
-                item._props.Weight *= 0.25;
+                item._props.Weight *= weightRetainPer;
                 item._props.Durability = 1;
                 item._props.MaxDurability = 1;
                 item._props.armorClass = 0;
@@ -408,7 +410,7 @@ interface IGenerationConfig
 {
     MaxClass: number,
     IgnoreIntegratedArmors: boolean,
-    EnableSPTRealismCompatChanges: boolean
+    VestWeightRetainPercent: number
 }
 
 interface IBotGenerationConfig
