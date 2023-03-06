@@ -97,10 +97,18 @@ class plates implements IPostDBLoadMod
             if (material == "Glass") continue; // glass plate? lel
             for (let i = 1; i != (config.GenerationConfig.MaxClass + 1); i++)
             {
-                let loyalLevel = i < 4 ? 0 : i == 4 ? 1 : i == 5 ? 2 : 3; // yo heard you love ternary conditional operators
-                let materialMult = material == "UHMWPE" || material == "Aramid" ? 1 : material == "Ceramic" || material == "Aluminum" || material == "Titan" || material == "Combined" ? 1.15 : 1.3;
-                let materialPenaltyMult = material == "UHMWPE" || material == "Aramid" ? 1 : material == "Ceramic" || material == "Aluminum" || material == "Titan" || material == "Combined" ? 2 : 3;
-                let bluntMat = material == "Aramid" ? 0.4 : 0.2; // soft armor does body ouchies
+                let loyalLevel = 
+                    i < 4 
+                    ? 0 
+                    : i == 4 
+                    ? 1 
+                    : i == 5 
+                    ? 2 
+                    : 3; // yo heard you love ternary conditional operators
+
+                let materialMult = config.MaterialsConfig[material].WeightMultiplier;
+                let materialPenaltyMult = config.MaterialsConfig[material].PenaltyMultiplier;
+                let bluntMat = config.MaterialsConfig[material].BluntThroughput;
                 let materialNoise = material == "Aramid" ? "gear_armor" : material == "UHMWPE" || material == "Combined" ? "gear_helmet" : "container_metal";
                 if (armPlates.length != config.GenerationConfig.MaxClass)
                 {
@@ -404,24 +412,44 @@ interface IConfig
 {
     GenerationConfig: IGenerationConfig
     BotGenConfig: IBotGenerationConfig
+    MaterialsConfig: IMaterialsConfig
 }
 
 interface IGenerationConfig
 {
-    MaxClass: number,
-    IgnoreIntegratedArmors: boolean,
+    MaxClass: number
+    IgnoreIntegratedArmors: boolean
     VestWeightRetainPercent: number
+    MaterialPenaltyMultCoeff: number
 }
 
 interface IBotGenerationConfig
 {
-    MaxScavPlateLevel: number,
-    BaseChestPlateChance: number,
-    BaseStomachPlateChance: number,
-    BaseArmPlateChance: number,
-    BossChestPlateChance: number,
-    BossStomachPlateChance: number,
+    MaxScavPlateLevel: number
+    BaseChestPlateChance: number
+    BaseStomachPlateChance: number
+    BaseArmPlateChance: number
+    BossChestPlateChance: number
+    BossStomachPlateChance: number
     BossArmPlateChance: number
+}
+
+interface IMaterialsConfig
+{
+    UHMWPE: IMaterialConfig
+    Aramid: IMaterialConfig
+    Ceramic: IMaterialConfig
+    Titan: IMaterialConfig
+    Aluminium: IMaterialConfig
+    Combined: IMaterialConfig
+    ArmoredSteel: IMaterialConfig
+}
+
+interface IMaterialConfig
+{
+    WeightMultiplier: number
+    PenaltyMultiplier: number
+    BluntThroughput: number
 }
 
 module.exports = { mod: new plates() };

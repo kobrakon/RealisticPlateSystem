@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "main": "src/script.js",
   "dependencies": {},
-  "akiVersion": "3.5.0",
+  "akiVersion": "3.5.1",
   "scripts": 
   {
     "setup": "npm i",

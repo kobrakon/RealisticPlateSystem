@@ -14,5 +14,50 @@
         "BossChestPlateChance": 100,
         "BossStomachPlateChance": 100,
         "BossArmPlateChance": 100
+    },
+    "MaterialsConfig":
+    {
+        "UHMWPE":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.2
+        },
+        "Aramid":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.4
+        },
+        "Ceramic":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.2
+        },
+        "Titan":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.2
+        },
+        "Aluminium":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.2
+        },
+        "Combined":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.2
+        },
+        "ArmoredSteel":
+        {
+            "WeightMultiplier": 1,
+            "PenaltyMultiplier": 1,
+            "BluntThroughput": 0.2
+        }
     }
 }
